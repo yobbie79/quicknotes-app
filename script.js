@@ -9,7 +9,7 @@ const errorMessage = document.querySelector("#error-message");
 // 2. Create an array to store notes
 let notes = [];
 
-// 3. Display the correct note count
+// 3. Update the note count
 function updateNoteCount() {
   if (notes.length === 0) {
     noteCount.textContent = "You have no notes yet.";
@@ -20,42 +20,55 @@ function updateNoteCount() {
   }
 }
 
-// 4. Create and display the note cards
+// 4. Delete a note using its ID
+function deleteNote(noteId) {
+  notes = notes.filter(function (note) {
+    return note.id !== noteId;
+  });
+
+  render();
+}
+
+// 5. Render the notes on the page
 function render() {
-  // Remove the existing displayed notes
   notesList.replaceChildren();
 
-  // Create a card for each note
   notes.forEach(function (note) {
+    // Create the note card
     const listItem = document.createElement("li");
     listItem.classList.add(
       "note-card",
       `category-${note.category}`
     );
 
-    // Note text
+    // Display the note text
     const noteText = document.createElement("p");
     noteText.textContent = note.text;
 
-    // Category label
+    // Display the category
     const categoryLabel = document.createElement("span");
     categoryLabel.classList.add("note-category");
     categoryLabel.textContent =
       note.category.charAt(0).toUpperCase() +
       note.category.slice(1);
 
-    // Date and time
+    // Display the creation date
     const dateLabel = document.createElement("p");
     dateLabel.classList.add("note-date");
     dateLabel.textContent = `Created: ${note.createdAt}`;
 
-    // Delete button (its functionality comes in Task 4)
+    // Create the Delete button
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-btn");
 
-    // Add elements to the note card
+    // Delete only this note when clicked
+    deleteButton.addEventListener("click", function () {
+      deleteNote(note.id);
+    });
+
+    // Add all elements to the card
     listItem.append(
       noteText,
       categoryLabel,
@@ -70,19 +83,30 @@ function render() {
   updateNoteCount();
 }
 
-// 5. Add a new note when the form is submitted
+// 6. Handle form submission and validate the note
 noteForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const text = noteInput.value.trim();
   const category = noteCategory.value;
 
-  // Full validation and error messages will be added in Task 4
+  // Reject empty notes
   if (text === "") {
+    errorMessage.textContent = "Please type a note first.";
     return;
   }
 
-  // Create a note object
+  // Reject notes longer than 200 characters
+  if (text.length > 200) {
+    errorMessage.textContent =
+      "Notes must be 200 characters or fewer.";
+    return;
+  }
+
+  // Clear any previous validation error
+  errorMessage.textContent = "";
+
+  // Create the new note object
   const newNote = {
     id: Date.now().toString(),
     text: text,
@@ -90,16 +114,15 @@ noteForm.addEventListener("submit", function (event) {
     createdAt: new Date().toLocaleString()
   };
 
-  // Store the note in the array
+  // Add the note to the array
   notes.push(newNote);
 
   // Clear the input field
   noteInput.value = "";
-  errorMessage.textContent = "";
 
-  // Update the page
+  // Refresh the displayed notes and count
   render();
 });
 
-// 6. Display the initial page
+// 7. Display the initial page
 render();
