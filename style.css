@@ -1,0 +1,209 @@
+```css
+/* 1. Reset default spacing and box sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* 3. Header */
+header {
+    background-color: #087f8c;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1rem;
+}
+
+/* 4. Main content area */
+main {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* 5. Section cards */
+section {
+    background-color: #ffffff;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    margin-bottom: 20px;
+    color: #087f8c;
+}
+
+/* 6. Form layout */
+#note-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 150px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* 7. Input fields and dropdown */
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font: inherit;
+    background-color: #ffffff;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #087f8c;
+    outline-offset: 1px;
+}
+
+/* 8. Buttons */
+button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #087f8c;
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #05616b;
+}
+
+/* 9. Error message */
+#error-message {
+    color: #c62828;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+/* 10. Search box */
+#your-notes-section > .form-group {
+    margin-bottom: 18px;
+}
+
+/* 11. Note list */
+#notes-list {
+    list-style: none;
+}
+
+/* 12. Note cards */
+.note-card {
+    padding: 15px;
+    border: 1px solid #dddddd;
+    border-left: 5px solid #087f8c;
+    border-radius: 7px;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.note-card p {
+    margin-bottom: 8px;
+}
+
+.note-card .note-category {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.note-card .note-date {
+    color: #666666;
+    font-size: 0.85rem;
+}
+
+/* 13. Category-specific styles */
+.category-personal {
+    border-left-color: #00897b;
+}
+
+.category-work {
+    border-left-color: #b71c1c;
+}
+
+.category-study {
+    border-left-color: #1565c0;
+}
+
+/* 14. Note count */
+#note-count {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* 15. Footer */
+footer {
+    background-color: #e5e9ec;
+    color: #555555;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* 16. Responsive layout for small screens */
+@media (max-width: 600px) {
+    header {
+        padding: 24px 15px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    #note-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #note-form .form-group,
+    #note-form button {
+        width: 100%;
+    }
+}
+```
